@@ -54,10 +54,10 @@ button
 
 *[tabindex]:focus,
 button:focus,
-input:focus
+input:focus,
+label:focus
 {
-    outline: none;
-    box-shadow: 0 0 10px #fff000;
+    outline: 10px solid white;
 }
 
 form
@@ -689,12 +689,9 @@ input[type=radio]:checked + .review-mark-label
     z-index: 3;
     top: 80px;
     left: 50%;
-
     box-sizing: border-box;
     width: 800px;
-
-    transform: translateX(-50%);
-
+    margin-left: -400px;
     color: #000;
     background: #89a1fd;
     box-shadow: 10px 10px 0 rgba(0, 0, 0, .25);
@@ -730,14 +727,11 @@ input[type=radio]:checked + .review-mark-label
 {
     display: inline-block;
     overflow: hidden;
-
     width: 40px;
     height: 40px;
     margin-top: -10px;
     margin-right: 5px;
-
     vertical-align: middle;
-
     border-radius: 40px;
 }
 
@@ -762,12 +756,6 @@ input[type=radio]:checked + .review-mark-label
 .setup-user-name:invalid
 {
     border: 2px solid red;
-}
-
-.setup-user-name:focus
-{
-    border-bottom: solid 1px #000;
-    outline: none;
 }
 
 .setup-close
@@ -1023,21 +1011,24 @@ input[type=radio]:checked + .review-mark-label
     position: absolute;
     top: 0;
     left: 0;
-
     display: block;
-
+    width: 100%;
+    height: 100%;
     margin: 0;
 }
 
-.upload input
-{
+.upload label {
     position: absolute;
-    z-index: 0;
     top: 0;
     left: 0;
 
+    display: block;
     width: 100%;
     height: 100%;
+    
+    cursor: move;
+}
 
-    opacity: 0;
+.upload input {
+    display: none;
 }
