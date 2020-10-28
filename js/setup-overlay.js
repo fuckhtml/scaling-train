@@ -114,6 +114,6 @@
     document.querySelector('.setup-open-icon').addEventListener('keydown', setupOpenOnSpaceDown);
   }
 
-  window.addEventListener('DOMContentLoaded', initSetupOverlay);
+  document.addEventListener('DOMContentLoaded', initSetupOverlay);
 
 })()

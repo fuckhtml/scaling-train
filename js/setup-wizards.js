@@ -42,6 +42,6 @@
 
   }
 
-  window.addEventListener('DOMContentLoaded', initSetupWizards);
+  document.addEventListener('DOMContentLoaded', initSetupWizards);
 
 })()
