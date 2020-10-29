@@ -4,26 +4,32 @@
 
   const initSetupOverlay = () => {
 
+    const setupOpenIconElement = document.querySelector('.setup-open-icon');
+
+    const setupElement = document.querySelector('.setup');
+    const setupCloseElement = setupElement.querySelector('.setup-close'); 
+    const uploadElement = setupElement.querySelector('.upload label');
+
     const showSetup = () => {
 
-      document.querySelector('.setup-open-icon').removeEventListener('click', setupOpenOnClick);
-      document.querySelector('.setup-open-icon').removeEventListener('keydown', setupOpenOnEnterDown);
-      document.querySelector('.setup-open-icon').removeEventListener('keydown', setupOpenOnSpaceDown);
+      setupOpenIconElement.removeEventListener('click', setupOpenOnClick);
+      setupOpenIconElement.removeEventListener('keydown', setupOpenOnEnterDown);
+      setupOpenIconElement.removeEventListener('keydown', setupOpenOnSpaceDown);
 
       const hideSetup = () => {
-        document.querySelector('.setup').style.transform = '';
-        document.querySelector('.upload label').removeEventListener('mousedown', inputFileOnMouseDown)
+        setupElement.style.transform = '';
+        uploadElement.removeEventListener('mousedown', uploadElementOnMouseDown)
 
         document.removeEventListener('keydown', documentOnEscapeDown);
-        document.querySelector('.setup-close').removeEventListener('click', setupCloseOnClick);
-        document.querySelector('.setup-close').removeEventListener('keydown', setupCloseOnEnterDown);
-        document.querySelector('.setup-close').removeEventListener('keydown', setupCloseOnSpaceDown);
+        setupCloseElement.removeEventListener('click', setupCloseOnClick);
+        setupCloseElement.removeEventListener('keydown', setupCloseOnEnterDown);
+        setupCloseElement.removeEventListener('keydown', setupCloseOnSpaceDown);
 
-        document.querySelector('.setup-open-icon').addEventListener('click', setupOpenOnClick);
-        document.querySelector('.setup-open-icon').addEventListener('keydown', setupOpenOnEnterDown);
-        document.querySelector('.setup-open-icon').addEventListener('keydown', setupOpenOnSpaceDown);
+        setupOpenIconElement.addEventListener('click', setupOpenOnClick);
+        setupOpenIconElement.addEventListener('keydown', setupOpenOnEnterDown);
+        setupOpenIconElement.addEventListener('keydown', setupOpenOnSpaceDown);
 
-        document.querySelector('.setup').classList.add('hidden');
+        setupElement.classList.add('hidden');
       }
 
       const documentOnEscapeDown = () => {
@@ -31,89 +37,89 @@
           hideSetup();
         }
       }
+      document.addEventListener('keydown', documentOnEscapeDown);
 
       const setupCloseOnClick = () => {
         hideSetup();
       }
+      setupCloseElement.addEventListener('click', setupCloseOnClick);
 
       const setupCloseOnEnterDown = () => {
         if (event.code === 'Enter' || event.code === 'Space') {
           hideSetup();
         }
       }
+      setupCloseElement.addEventListener('keydown', setupCloseOnEnterDown);
 
       const setupCloseOnSpaceDown = () => {
         if (event.code === 'Space') {
           hideSetup();
         }
       }
+      setupCloseElement.addEventListener('keydown', setupCloseOnSpaceDown);
 
-      document.addEventListener('keydown', documentOnEscapeDown);
-      document.querySelector('.setup-close').addEventListener('click', setupCloseOnClick);
-      document.querySelector('.setup-close').addEventListener('keydown', setupCloseOnEnterDown);
-      document.querySelector('.setup-close').addEventListener('keydown', setupCloseOnSpaceDown);
-
-      const inputFileOnMouseDown = () => {
-        const prevOffsetLeft = document.querySelector('.setup').offsetLeft;
-        const prevOffsetTop = document.querySelector('.setup').offsetTop;
+      const uploadElementOnMouseDown = () => {
         const prevClientX = event.clientX;
         const prevClientY = event.clientY;
+        const prevTranslateX = parseInt(setupElement.style.transform.match(/\d+/g)[0]);
+        const prevTranslateY = parseInt(setupElement.style.transform.match(/\d+/g)[1]);
 
         let isDragged = false;
 
-        const inputFileOnMouseUp = () => {
-          document.removeEventListener('mousemove', inputFileOnMouseMove);
-          document.removeEventListener('mouseup', inputFileOnMouseUp);
-        }
-
-        const inputFileOnMouseMove = () => {
+        const uploadElementOnMouseMove = () => {
           isDragged = true;
 
           const shiftX = event.clientX - prevClientX;
           const shiftY = event.clientY - prevClientY;
 
-          document.querySelector('.setup').style.transform = `translate(${shiftX}px, ${shiftY}px)`;
+          setupElement.style.transform = `translate(` + 
+            `${prevTranslateX + shiftX}px,` + 
+            `${prevTranslateY + shiftY}px)`;
         }
+        document.addEventListener('mousemove', uploadElementOnMouseMove);
 
-        const inputFileOnClick = () => {
+        const uploadElementOnMouseUp = () => {
+          document.removeEventListener('mousemove', uploadElementOnMouseMove);
+          document.removeEventListener('mouseup', uploadElementOnMouseUp);
+        }        
+        document.addEventListener('mouseup', uploadElementOnMouseUp);
+
+        const uploadElementOnClick = () => {
           isDragged && event.preventDefault();
-          document.querySelector('.upload label').removeEventListener('click', inputFileOnClick);
+          uploadElement.removeEventListener('click', uploadElementOnClick);
         }
-
-        document.addEventListener('mousemove', inputFileOnMouseMove);
-        document.addEventListener('mouseup', inputFileOnMouseUp);
-        document.querySelector('.upload label').addEventListener('click', inputFileOnClick);
+        uploadElement.addEventListener('click', uploadElementOnClick);
       }
 
-      document.querySelector('.upload label').addEventListener('mousedown', inputFileOnMouseDown)
+      setupElement.style.transform = 'translate(0px, 0px)';
+      uploadElement.addEventListener('mousedown', uploadElementOnMouseDown)
 
-
-      document.querySelector('.setup').classList.remove('hidden');
+      setupElement.classList.remove('hidden');
       event.preventDefault(); // not to send the form data at once
-      document.querySelector('.upload label').focus();
+      uploadElement.focus();
+
     }
 
     const setupOpenOnClick = () => {
       showSetup();
     } 
+    setupOpenIconElement.addEventListener('click', setupOpenOnClick);
 
     const setupOpenOnEnterDown = () => {
       if (event.code === 'Enter') {
         showSetup();
       }
     }
+    setupOpenIconElement.addEventListener('keydown', setupOpenOnEnterDown);
 
     const setupOpenOnSpaceDown = () => {
       if (event.code === 'Space') {
         showSetup();
       }
     }
+    setupOpenIconElement.addEventListener('keydown', setupOpenOnSpaceDown);
 
-    document.querySelector('.setup-open-icon').addEventListener('click', setupOpenOnClick);
-    document.querySelector('.setup-open-icon').addEventListener('keydown', setupOpenOnEnterDown);
-    document.querySelector('.setup-open-icon').addEventListener('keydown', setupOpenOnSpaceDown);
   }
-
   document.addEventListener('DOMContentLoaded', initSetupOverlay);
 
 })()
