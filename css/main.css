@@ -730,7 +730,7 @@ input[type=radio]:checked + .review-mark-label
   overflow: hidden;
 }
 
-.setup-user-name {
+.setup-username {
   width: 500px;
 
   font-family: 'PT Mono', 'Arial', serif;
@@ -743,11 +743,11 @@ input[type=radio]:checked + .review-mark-label
   border: 0;
 }
 
-.setup-user-name:valid {
+.setup-username:valid {
   border: 0;
 }
 
-.setup-user-name:invalid {
+.setup-username:invalid {
   /*border: 2px solid red;*/
 }
 

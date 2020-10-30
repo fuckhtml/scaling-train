@@ -39,8 +39,21 @@
     request.open(method, url, isAsync);
     request.send(data);      
 
+
+    
   }
 
   document.addEventListener('DOMContentLoaded', initSetupSimilar);
 
 })()
+
+// jsonp
+
+// function x(data) {
+//   debugger
+//   console.log(data);
+// }
+
+// var script = document.createElement('script');
+// script.src='https://javascript.pages.academy/code-and-magick/data?callback=x';
+// document.head.appendChild(script);
