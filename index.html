@@ -9,8 +9,10 @@
 
     <script defer src="js/utils.js"></script>
 
-    <script defer src="js/setup-player.js"></script>
-    <script defer src="js/setup-wizards.js"></script>
+    <script defer src="js/setup-player-appearance.js"></script>
+    <script defer src="js/setup-player-validation.js"></script>
+    <script defer src="js/setup-player-artifacts.js"></script>
+    <script defer src="js/setup-similar.js"></script>
     <script defer src="js/setup-overlay.js"></script>
 
     <script defer src="js/render-statistics.js"></script>
@@ -82,7 +84,7 @@
               </label>
             </div>
             <label>
-              <input type="text" class="setup-user-name" name="username" maxlength="25" value="Синий Пендальф" tabindex="20" required/>
+              <input type="text" class="setup-user-name" name="username" tabindex="20" minlength="5" maxlength="25" pattern="[А-Я][а-я]{1,} [А-Я][а-я]{1,}" value="Синий Пендальф" required/>
             </label>
           </div>
           <span class="setup-close" tabindex="21">&times;</span>
@@ -90,7 +92,7 @@
 
         <div class="setup-artifacts-shop">
           <div class="setup-artifacts-cell">
-            <img src="img/icon-star.png" width="65" height="50" draggable="true" alt="Star">
+            <img class="artifact-item" src="img/icon-star.png" width="65" height="50" draggable="false" alt="Star">
           </div>
           <div class="setup-artifacts-cell"></div>
           <div class="setup-artifacts-cell"></div>
@@ -123,7 +125,7 @@
             <!--type="hidden"--> <input name="fireball-color" value="#ee4830">
           </div>
 
-          <div class="setup-artifacts" dropzone="move">
+          <div class="setup-artifacts">
             <div class="setup-artifacts-cell"></div>
             <div class="setup-artifacts-cell"></div>
             <div class="setup-artifacts-cell"></div>

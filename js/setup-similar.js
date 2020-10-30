@@ -2,9 +2,8 @@
 
   'use strict';
 
-  const initSetupWizards = () => {
+  const initSetupSimilar = () => {
 
-    // render wizards 
     const renderWizards = (wizardsData) => {
       let wizardDataList = [];
       for (const id in wizardsData) {
@@ -42,6 +41,6 @@
 
   }
 
-  document.addEventListener('DOMContentLoaded', initSetupWizards);
+  document.addEventListener('DOMContentLoaded', initSetupSimilar);
 
 })()

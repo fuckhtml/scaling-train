@@ -4,12 +4,6 @@
 
   const initSetupOverlay = () => {
 
-    const setupOpenIconElement = document.querySelector('.setup-open-icon');
-
-    const setupElement = document.querySelector('.setup');
-    const setupCloseElement = setupElement.querySelector('.setup-close'); 
-    const uploadElement = setupElement.querySelector('.upload label');
-
     const showSetup = () => {
 
       setupOpenIconElement.removeEventListener('click', setupOpenOnClick);
@@ -25,38 +19,23 @@
         setupCloseElement.removeEventListener('keydown', setupCloseOnEnterDown);
         setupCloseElement.removeEventListener('keydown', setupCloseOnSpaceDown);
 
-        setupOpenIconElement.addEventListener('click', setupOpenOnClick);
-        setupOpenIconElement.addEventListener('keydown', setupOpenOnEnterDown);
-        setupOpenIconElement.addEventListener('keydown', setupOpenOnSpaceDown);
+        setupOpenIconElement.addEventListener('click', setupOpenOnClick, false);
+        setupOpenIconElement.addEventListener('keydown', setupOpenOnEnterDown, false);
+        setupOpenIconElement.addEventListener('keydown', setupOpenOnSpaceDown, false);
 
         setupElement.classList.add('hidden');
       }
 
-      const documentOnEscapeDown = () => {
-        if (event.code === 'Escape') {
-          hideSetup();
-        }
-      }
-      document.addEventListener('keydown', documentOnEscapeDown);
+      const documentOnEscapeDown = () => (event.code === 'Escape' && hideSetup()) 
 
-      const setupCloseOnClick = () => {
-        hideSetup();
-      }
-      setupCloseElement.addEventListener('click', setupCloseOnClick);
+      const setupCloseOnClick = () => hideSetup()
+      const setupCloseOnEnterDown = () => ((event.code === 'Enter' || event.code === 'Space') && hideSetup()) 
+      const setupCloseOnSpaceDown = () => (event.code === 'Space' && hideSetup())
 
-      const setupCloseOnEnterDown = () => {
-        if (event.code === 'Enter' || event.code === 'Space') {
-          hideSetup();
-        }
-      }
-      setupCloseElement.addEventListener('keydown', setupCloseOnEnterDown);
-
-      const setupCloseOnSpaceDown = () => {
-        if (event.code === 'Space') {
-          hideSetup();
-        }
-      }
-      setupCloseElement.addEventListener('keydown', setupCloseOnSpaceDown);
+      document.addEventListener('keydown', documentOnEscapeDown, false);
+      setupCloseElement.addEventListener('click', setupCloseOnClick, false);
+      setupCloseElement.addEventListener('keydown', setupCloseOnEnterDown, false);
+      setupCloseElement.addEventListener('keydown', setupCloseOnSpaceDown, false);
 
       const uploadElementOnMouseDown = () => {
         const prevClientX = event.clientX;
@@ -76,50 +55,43 @@
             `${prevTranslateX + shiftX}px,` + 
             `${prevTranslateY + shiftY}px)`;
         }
-        document.addEventListener('mousemove', uploadElementOnMouseMove);
+        document.addEventListener('mousemove', uploadElementOnMouseMove, false);
 
         const uploadElementOnMouseUp = () => {
           document.removeEventListener('mousemove', uploadElementOnMouseMove);
           document.removeEventListener('mouseup', uploadElementOnMouseUp);
         }        
-        document.addEventListener('mouseup', uploadElementOnMouseUp);
+        document.addEventListener('mouseup', uploadElementOnMouseUp, false);
 
         const uploadElementOnClick = () => {
-          isDragged && event.preventDefault();
+          (isDragged && event.preventDefault());
           uploadElement.removeEventListener('click', uploadElementOnClick);
         }
-        uploadElement.addEventListener('click', uploadElementOnClick);
+        uploadElement.addEventListener('click', uploadElementOnClick, false);
       }
 
       setupElement.style.transform = 'translate(0px, 0px)';
-      uploadElement.addEventListener('mousedown', uploadElementOnMouseDown)
+      uploadElement.addEventListener('mousedown', uploadElementOnMouseDown, false)
 
       setupElement.classList.remove('hidden');
       event.preventDefault(); // not to send the form data at once
       uploadElement.focus();
-
     }
 
-    const setupOpenOnClick = () => {
-      showSetup();
-    } 
-    setupOpenIconElement.addEventListener('click', setupOpenOnClick);
+    const setupOpenOnClick = () => showSetup();
+    const setupOpenOnEnterDown = () => (event.code === 'Enter' && showSetup())
+    const setupOpenOnSpaceDown = () => (event.code === 'Space' && showSetup())
 
-    const setupOpenOnEnterDown = () => {
-      if (event.code === 'Enter') {
-        showSetup();
-      }
-    }
-    setupOpenIconElement.addEventListener('keydown', setupOpenOnEnterDown);
+    const setupOpenIconElement = document.querySelector('.setup-open-icon');
+    const setupElement = document.querySelector('.setup');
+    const setupCloseElement = setupElement.querySelector('.setup-close'); 
+    const uploadElement = setupElement.querySelector('.upload label');
 
-    const setupOpenOnSpaceDown = () => {
-      if (event.code === 'Space') {
-        showSetup();
-      }
-    }
-    setupOpenIconElement.addEventListener('keydown', setupOpenOnSpaceDown);
-
+    setupOpenIconElement.addEventListener('click', setupOpenOnClick, false);
+    setupOpenIconElement.addEventListener('keydown', setupOpenOnEnterDown, false);
+    setupOpenIconElement.addEventListener('keydown', setupOpenOnSpaceDown, false);
   }
-  document.addEventListener('DOMContentLoaded', initSetupOverlay);
+
+  document.addEventListener('DOMContentLoaded', initSetupOverlay, false);
 
 })()
