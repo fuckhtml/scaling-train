@@ -37,10 +37,7 @@
       }
     })
     request.open(method, url, isAsync);
-    request.send(data);      
-
-
-    
+    request.send(data);
   }
 
   document.addEventListener('DOMContentLoaded', initSetupSimilar);

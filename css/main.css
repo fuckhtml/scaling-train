@@ -787,7 +787,7 @@ input[type=radio]:checked + .review-mark-label
 
 .artifact-item-on-drag {
   z-index: 1000;
-  position: absolute;
+  position: fixed;
 
   right: 100%;
   bottom: 100%;

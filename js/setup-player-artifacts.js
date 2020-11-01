@@ -11,7 +11,7 @@
         const documentOnMouseMove = () => {
           artifactElement.style.transform = `translate(${event.clientX + 32}px, ${event.clientY + 30}px)`;
           Array.from(setupArifactsCellElementList).map(cellElement => cellElement.style.border = '');
-          
+          // calculations activate on mouse in
           if (
             event.clientX >= setupArtifactsElement.getBoundingClientRect().x &&
             event.clientX <= setupArtifactsElement.getBoundingClientRect().x + setupArtifactsElement.getBoundingClientRect().width &&
@@ -56,6 +56,7 @@
         document.body.style = 'position: relative;';
         document.body.appendChild(artifactElement);
 
+        let isMouseInsideSetupArtifactsElement = false;
         let mouseInsideSetupArtifactCellIndex = null;
 
         document.addEventListener('mousemove', documentOnMouseMove, false)
