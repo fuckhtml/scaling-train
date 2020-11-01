@@ -19,28 +19,28 @@
       },
       "histogram": {
         "pos": {
-          "startX": 100 + 150, // area.indentLeft + 
+          "startX": 100 + 200, // area.indentLeft + 
           "startY": 10 + 45,   // area.indentTop + 
           "indentY": 30 + 20,  // height + actual indent
         },
         "size": {
-          "maxWidth": 300,
+          "maxWidth": 250,
           "height": 30,          
         },
         "color": 'black',
       },
-      "name": {
+      "text": {
         "fontSize": "18px",
         "fontFamily": "Arial",
         "pos": {
-          "startX": 50 + 130,    // area.indentLeft + 
+          "startX": 100 + 50,          // area.indentLeft + 
           "startY": 10 + 45 + 30,      // area.indentTop + 
-          "indentY": 30 + 20,     // height + actual indent
+          "indentY": 30 + 20,          // height + actual indent
         }
       }
     }
 
-    ctx.canvas.style.border = '2px solid red';
+    // ctx.canvas.style.border = '2px solid red';
 
     ctx.fillStyle = setup.area.shadowColor;
     ctx.fillRect(setup.area.pos.indentLeft + 10, setup.area.pos.indentTop + 10, setup.area.size.width, setup.area.size.height);
@@ -49,7 +49,7 @@
 
     const k = setup.histogram.size.maxWidth / Math.max(...timeList);
     for (let i = 0; i < timeList.length; i++) {
-      debugger;
+      // debugger;
       ctx.fillStyle = setup.histogram.color;
       ctx.fillRect(
         setup.histogram.pos.startX, 
@@ -58,12 +58,13 @@
         setup.histogram.size.height
       );
 
-      ctx.font = setup.name.fontSize + ' ' + setup.name.fontFamily;
+      ctx.font = setup.text.fontSize + ' ' + setup.text.fontFamily;
       ctx.fillText(
-        nameList[i], 
-        setup.name.pos.startX, 
-        setup.name.pos.startY + (setup.name.pos.indentY * i),
+        `${(timeList[i] / 1000).toFixed(2)} сек. ${nameList[i]}`, 
+        setup.text.pos.startX, 
+        setup.text.pos.startY + (setup.text.pos.indentY * i) - 7,
       );
+
     }
   }
 
