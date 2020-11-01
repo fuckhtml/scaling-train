@@ -777,6 +777,24 @@ input[type=radio]:checked + .review-mark-label
   justify-content: flex-end;
 }
 
+.artifact-item {
+  cursor: grab;
+}
+
+.artifact-item:active {
+  cursor: grabbing;
+}
+
+.artifact-item-on-drag {
+  z-index: 1000;
+  position: absolute;
+
+  right: 100%;
+  bottom: 100%;
+
+  cursor: grabbing;
+}
+
 .setup-player {
   position: relative;
 
@@ -834,6 +852,13 @@ input[type=radio]:checked + .review-mark-label
   justify-content: space-between;
 }
 
+.setup-artifacts .artifact-item {
+  cursor: default;
+}
+.setup-artifacts .artifact-item:active {
+  cursor: default;
+}
+
 .setup-artifacts-cell {
   box-sizing: border-box;
   width: 65px;
@@ -842,18 +867,6 @@ input[type=radio]:checked + .review-mark-label
   background: rgba(0, 0, 0, .1);
 
   border: solid 1px rgba(255, 255, 255, .5);
-}
-
-.setup-artifacts-cell .artifact-item {
-  cursor: grab;
-}
-
-.artifact-item-on-drag {
-  z-index: 1000;
-  position: absolute;
-
-  right: 100%;
-  bottom: 100%;
 }
 
 .setup-artifacts-cell:last-child {
