@@ -5,6 +5,7 @@
   const initSetupPlayerAppearance = () => {
 
     const setPlayerAppearance = () => {
+
       switch (event.target.attributes.class.value) {
         case ('setup-fireball'):
           (currentFireballColorIndex < (fireballColorList.length - 1) ? currentFireballColorIndex++ : currentFireballColorIndex = 0);
@@ -32,7 +33,7 @@
     const setupPlayerElementOnClick = () => setPlayerAppearance();
 
     const setupElement = document.querySelector('.setup');
-    const setupPlayerElement = setupElement.querySelector(' .setup-player');
+    const setupPlayerElement = setupElement.querySelector('.setup-player');
 
     const fireballColorList = ['#ee4830','#30a8ee','#5ce6c0','#e848d5','#e6e848',];
     const coatColorList = ['rgb(101,137,164)','rgb(241,43,107)','rgb(146,100,107)','rgb(56,159,117)','rgb(215,210,55)','rgb(0,0,0)',];
