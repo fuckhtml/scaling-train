@@ -4,30 +4,8 @@
 
   const initSetupPlayerValidation = () => {  
 
-    const setErrorMessage = () => {
-      // if (event.target.validity.patternMismatch) {
-      //   event.target.setCustomValidity('Укажите имя и фамилию вашего персонажа в формате "Имя Фамилия"');
-      // } else if (event.target.validity.tooShort) {
-      //   event.target.setCustomValidity('Слишком коротие имя с фамилией');
-      // } else if (event.target.validity.tooLong) {
-      //   event.target.setCustomValidity('Слишком длинные имя с фамилией');
-      // } else if (event.target.validity.valueMissing) {
-      //   event.target.setCustomValidity('Укажите имя и фамилию вашего персонажа');
-      // }
-    }
-
-    const formOnInvalid = () => {
-      setErrorMessage();
-    }
-
-    const isEverythingInFormValid = () => {
-      Array.from(setupWizardFormElement.querySelectorAll('input')).forEach(function(inputElement) {
-        if (!inputElement.validity.valid) return false;
-      });
-      return true;
-    }
-
     const sendFormData = () => {
+      event.preventDefault();
       const request = new XMLHttpRequest();
       const isAsync = false;
       const contentType = 'application/x-www-form-urlencoded';
@@ -43,12 +21,39 @@
       console.log(request.response);
     }
 
-    const formOnSubmit = () => { event.preventDefault(); console.log(1);(isEverythingInFormValid() && sendFormData() || setErrorMessage()) }
-  
-    const setupElement = document.querySelector('.setup');
-    const setupWizardFormElement = setupElement.querySelector('.setup-wizard-form');
+    const setErrorMessage = () => {
+      switch(true) {
+        case (event.target.validity.valueMissing):
+          event.target.setCustomValidity('Укажите имя и фамилию вашего персонажа');
+          break;
+        case (event.target.validity.tooShort):
+          event.target.setCustomValidity('Слишком коротие имя с фамилией');
+          break;
+        case (event.target.validity.tooLong):
+          event.target.setCustomValidity('Слишком коротие имя с фамилией');
+          break;
+        case (event.target.validity.patternMismatch):
+          event.target.setCustomValidity('Укажите имя и фамилию вашего персонажа в формате "Имя Фамилия" на русском языке');
+          break;
+        default:
+          break;
+      }
+    }
 
+    const cleanErrorMessage = () => {
+      event.target.setCustomValidity('');
+    }
+
+    const formOnSubmit = () => sendFormData();
+    const inputOnInvalid = () => setErrorMessage();
+    const inputOnInput = () => cleanErrorMessage();
+
+    const setupWizardFormElement = document.querySelector('.setup-wizard-form');
+    const inputUsernameElement = document.querySelector('.setup-wizard-form  input[name="username"]');
+    
     setupWizardFormElement.addEventListener('submit', formOnSubmit, true);
+    inputUsernameElement.addEventListener('invalid', inputOnInvalid, true);
+    inputUsernameElement.addEventListener('input', inputOnInput, true);
   }
 
   document.addEventListener('DOMContentLoaded', initSetupPlayerValidation, false);

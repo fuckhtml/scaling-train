@@ -6,9 +6,10 @@
 
     const inputFileElementOnChange = () => {
 
+      console.log(inputFileElement.files);
+
       const file = inputFileElement.files[0];
       const extention = file.name.slice(file.name.lastIndexOf('.')); 
-      
 
       if (['.jpg', '.jpeg', '.png', '.ico'].some(ext => (ext === extention))) {
         const fileReader = new FileReader();
@@ -29,5 +30,5 @@
   }
 
   document.addEventListener('DOMContentLoaded', initSetupPlayerAvatar);
-  
+
 })()

@@ -1,4 +1,5 @@
 <?php
+  sleep(3);
 
   $artifactKindArray = array(
     id10 => 'fireball', 
@@ -57,7 +58,7 @@
   $wizards = array(
     id10 => array(
       name => 'Дамблдор',
-      colorCoat => 'rgb(241, 43, 107)',
+      colorCoat => 'rgb(241,43,107)',
       colorEyes => 'yellow',
       colorFireball => '#5ce6c0',
       artifacts => array(
@@ -70,7 +71,7 @@
     ),
     id11 => array(
       name => 'Волдеморт',
-      colorCoat => 'rgb(215, 210, 55)',
+      colorCoat => 'rgb(215,210,55)',
       colorEyes => 'black',
       colorFireball => '#30a8ee',
       artifacts => array(
@@ -81,7 +82,7 @@
     ),
     id12 => array(
       name => 'Доктор Стрендж',
-      colorCoat => 'rgb(146, 100, 161)',
+      colorCoat => 'rgb(146,100,161)',
       colorEyes => 'yellow',
       colorFireball => '#ee4830',
       artifacts => array(
@@ -94,7 +95,7 @@
     ),
     id13 => array(
       name => 'Гарри Поттер',
-      colorCoat => 'rgb(101, 137, 164)',
+      colorCoat => 'rgb(101,137,164)',
       colorEyes => 'red',
       colorFireball => '#ee4830',
       artifacts => array(
@@ -109,7 +110,7 @@
     ),
     id14 => array(
       name => 'Старик Хоттабыч',
-      colorCoat => 'rgb(0, 0, 0)',
+      colorCoat => 'rgb(0,0,0)',
       colorEyes => 'blue',
       colorFireball => '#30a8ee',
       artifacts => array(
@@ -125,7 +126,7 @@
     ),
     id15 => array(
       name => 'Дэвид Блэйн',
-      colorCoat => 'rgb(215, 210, 55)',
+      colorCoat => 'rgb(215,210,55)',
       colorEyes => 'blue',
       colorFireball => '#e848d5',
       artifacts => array(
@@ -141,7 +142,7 @@
     ),
     id16 => array(
       name => 'Гарри Гудини',
-      colorCoat => 'rgb(0, 0, 0)',
+      colorCoat => 'rgb(0,0,0)',
       colorEyes => 'yellow',
       colorFireball => '#e6e848',
       artifacts => array(
@@ -154,7 +155,7 @@
     ),
     id17 => array(
       name => 'Григорий Распутин',
-      colorCoat => 'rgb(241, 43, 107)',
+      colorCoat => 'rgb(241,43,107)',
       colorEyes => 'blue',
       colorFireball => '#5ce6c0',
       artifacts => array(
@@ -167,7 +168,7 @@
     ),
     id18 => array(
       name => 'Саурон',
-      colorCoat => 'rgb(101, 137, 164)',
+      colorCoat => 'rgb(101,137,164)',
       colorEyes => 'blue',
       colorFireball => '#e848d5',
       artifacts => array(
@@ -181,7 +182,7 @@
     ),
     id19 => array(
       name => 'Антон Городецкий',
-      colorCoat => 'rgb(56, 159, 117)',
+      colorCoat => 'rgb(56,159,117)',
       colorEyes => 'yellow',
       colorFireball => '#e848d5',
       artifacts => array(
@@ -196,7 +197,7 @@
     ),
     id20 => array(
       name => 'Алистер Кроули',
-      colorCoat => 'rgb(146, 100, 161)',
+      colorCoat => 'rgb(146,100,161)',
       colorEyes => 'black',
       colorFireball => '#ee4830',
       artifacts => array(
@@ -210,7 +211,7 @@
     ),
     id21 => array(
       name => 'Гендальф Белый',
-      colorCoat => 'rgb(215, 210, 55)',
+      colorCoat => 'rgb(215,210,55)',
       colorEyes => 'yellow',
       colorFireball => '#30a8ee',
       artifacts => array(
@@ -225,7 +226,7 @@
     ),
     id22 => array(
       name => 'Фея Крестная',
-      colorCoat => 'rgb(215, 210, 55)',
+      colorCoat => 'rgb(215,210,55)',
       colorEyes => 'green',
       colorFireball => '#5ce6c0',
       artifacts => array(
@@ -240,7 +241,7 @@
     ),
     id23 => array(
       name => 'Ведьма Пустоши',
-      colorCoat => 'rgb(56, 159, 117)',
+      colorCoat => 'rgb(56,159,117)',
       colorEyes => 'black',
       colorFireball => '#5ce6c0',
       artifacts => array(
@@ -255,7 +256,7 @@
     ),
     id24 => array(
       name => 'Мерлин',
-      colorCoat => 'rgb(101, 137, 164)',
+      colorCoat => 'rgb(101,137,164)',
       colorEyes => 'blue',
       colorFireball => '#30a8ee',
       artifacts => array(
@@ -270,7 +271,7 @@
     ),
     id25 => array(
       name => 'Гендальф Серый',
-      colorCoat => 'rgb(56, 159, 117',
+      colorCoat => 'rgb(56,159,117',
       colorEyes => 'red',
       colorFireball => '#e6e848',
       artifacts => array(
@@ -287,7 +288,7 @@
     ),
     id26 => array(
       name => 'Джинни',
-      colorCoat => 'rgb(241, 43, 107)',
+      colorCoat => 'rgb(241,43,107)',
       colorEyes => 'black',
       colorFireball => '#30a8ee',
       artifacts => array(

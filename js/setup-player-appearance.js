@@ -5,7 +5,6 @@
   const initSetupPlayerAppearance = () => {
 
     const setPlayerAppearance = () => {
-
       switch (event.target.attributes.class.value) {
         case ('setup-fireball'):
           (currentFireballColorIndex < (fireballColorList.length - 1) ? currentFireballColorIndex++ : currentFireballColorIndex = 0);
@@ -28,6 +27,8 @@
         default:
           break;
       }
+      window.orderSimilarWizards();
+      window.renderSimilarWizards();
     }
 
     const setupPlayerElementOnClick = () => setPlayerAppearance();
@@ -44,8 +45,44 @@
     let currentEyesColorIndex = 0;
 
     setupPlayerElement.addEventListener('click', setupPlayerElementOnClick, false);
+
+    // const debounce = (func) => {
+    //   let timeout = null;
+    //   return () => {
+    //     timeout && clearTimeout(timeout);
+    //     timeout = setTimeout(()=> {
+    //       func(event);
+    //     }, 1000)
+    //   };
+    // }
+
+    // const print = (arg) => {
+    //   console.log(arg)
+    // }
+
+    // document.addEventListener('click', debounce( (event) => {
+    //   print(event);
+    // }), false)
+
+
   }
 
   document.addEventListener('DOMContentLoaded', initSetupPlayerAppearance, false);
 
 })()
+
+
+// const sayHi = (nameList) => {
+//   nameList.forEach(name => console.log(`Hi ${name}!`));
+// }
+
+// sayHi.call(['alex','terry','jide']);
+
+
+// var Party = function() {
+//   this.names = ['alex','terry','jide'];
+// }
+
+// const home = new Party();
+
+// sayHi.call(home);

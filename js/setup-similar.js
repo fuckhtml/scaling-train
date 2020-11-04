@@ -4,16 +4,43 @@
 
   const initSetupSimilar = () => {
 
-    const renderWizards = (wizardsData) => {
-      let wizardDataList = [];
-      for (const id in wizardsData) {
-        wizardDataList.push(wizardsData[id]);
+    window.orderSimilarWizards = () => {
+      let wizardDataList = window.wizardDataList;
+
+      const eyesColor = document.querySelector('.setup-player input[name="eyes-color"]').value;
+      const coatColor = document.querySelector('.setup-player input[name="coat-color"]').value;
+      const fireballColor = document.querySelector('.setup-player input[name="fireball-color"]').value;
+
+      for (let i = 0; i < window.wizardDataList.length; i++) {
+        wizardDataList[i].similarityIndex = 0;
+        if (wizardDataList[i].colorEyes === eyesColor) {
+          wizardDataList[i].similarityIndex += 2;
+        }
+        if (wizardDataList[i].colorCoat === coatColor) {
+          wizardDataList[i].similarityIndex += 3;
+        }
+        if (wizardDataList[i].colorFireball  === fireballColor) {
+          wizardDataList[i].similarityIndex += 0;
+        }
       }
 
+      for (let i = 1; i < wizardDataList.length; i++) {
+        for (let j = i; j > 0 && wizardDataList[j].similarityIndex > wizardDataList[j-1].similarityIndex; j--) {
+          const buff = wizardDataList[j];
+          wizardDataList[j] = wizardDataList[j-1];
+          wizardDataList[j-1] = buff;
+        }
+      }
+
+      window.wizardDataList = wizardDataList;
+    }
+
+    window.renderSimilarWizards = () => {
+      document.querySelector('.setup-similar-list').innerHTML = '';
+
       for (let i = 0; i < 4; i++) {
-        const wizardData = wizardDataList[Math.floor(Math.random() * wizardDataList.length)];
-        wizardDataList.splice(wizardDataList.indexOf(wizardData), 1);      
         const wizardElement = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item').cloneNode(true);
+        const wizardData = window.wizardDataList[i];
 
         wizardElement.querySelector('.setup-similar-label').textContent = wizardData.name;
         wizardElement.querySelector('.wizard-coat').style.fill = wizardData.colorCoat;
@@ -25,19 +52,39 @@
       document.querySelector('.setup-similar').classList.remove('hidden');
     }
 
-    // get wizards data
-    const request = new XMLHttpRequest();
-    const method = 'GET';
-    const url = 'get-wizards-data.php';
-    const isAsync = true;
-    const data = null;
-    request.addEventListener('readystatechange', function() {
-      if (request.readyState === 4 && request.status === 200) {
-        renderWizards(JSON.parse(request.responseText));
+    const formatWizardsData = (wizardsData) => {
+      // object of objects into list of objects
+      let similarWizardsList = [];
+      for (const prop in wizardsData) {
+        similarWizardsList.push(wizardsData[prop]);
       }
-    })
-    request.open(method, url, isAsync);
-    request.send(data);
+      return similarWizardsList;  
+    }
+
+    const getWizardsData = () => {
+      const request = new XMLHttpRequest();
+      const method = 'GET';
+      const url = 'get-wizards-data.php';
+      const isAsync = true;
+      const data = null;
+      const timeout = 10 * 1000;
+      request.addEventListener('load', function() {
+        window.wizardDataList = formatWizardsData(JSON.parse(request.responseText));
+        window.orderSimilarWizards();
+        window.renderSimilarWizards();
+      })
+      request.addEventListener('timeout', function() {
+        console.log('Response expectation is running out of the time limit');
+      })
+      request.addEventListener('error', function() {
+        console.log(request.statusText);
+      })
+      request.timeout = timeout;
+      request.open(method, url, isAsync);
+      request.send(data);      
+    }
+
+    getWizardsData();
   }
 
   document.addEventListener('DOMContentLoaded', initSetupSimilar);
