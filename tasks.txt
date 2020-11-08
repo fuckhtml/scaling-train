@@ -1,0 +1,11 @@
+0) Change lexical scope implementation with event.target on This
+
+1) solve the problem with debouncer. How can I pass particular event?
+
+2) Put all my functionality into the game object.
+
+3) How to initialize and remove particular functionality after particular events. For example I want to initalize all the features connected to overflow only after I open the overflow. and so on.
+
+4) Show app state while form data sending. f.e. cursor loading
+
+5) Drag and drop functionality. if I put an element from the shop onto the existing element in my inventare, I should take last item and it somewhere else.
