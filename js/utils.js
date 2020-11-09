@@ -2,6 +2,18 @@
 
   'use strict';
 
-  window.utils = {}
+  window.utils = {
+
+    debounce: (fn) => {
+      let timeout;
+      return (args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          fn(args);
+        }, 1000)
+      };
+    }
+
+  }
 
 })()

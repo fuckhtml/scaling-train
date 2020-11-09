@@ -4,7 +4,7 @@
 
   const initSetupSimilar = () => {
 
-    window.orderSimilarWizards = () => {
+    const orderSimilarWizards = () => {
       let wizardDataList = window.wizardDataList;
 
       const eyesColor = document.querySelector('.setup-player input[name="eyes-color"]').value;
@@ -35,7 +35,7 @@
       window.wizardDataList = wizardDataList;
     }
 
-    window.renderSimilarWizards = () => {
+    const renderSimilarWizards = () => {
       document.querySelector('.setup-similar-list').innerHTML = '';
 
       for (let i = 0; i < 4; i++) {
@@ -61,6 +61,11 @@
       return similarWizardsList;  
     }
 
+    window.showSimilarWizards = () => {
+      orderSimilarWizards();
+      renderSimilarWizards();
+    }
+
     const getWizardsData = () => {
       const request = new XMLHttpRequest();
       const method = 'GET';
@@ -70,8 +75,7 @@
       const timeout = 10 * 1000;
       request.addEventListener('load', function() {
         window.wizardDataList = formatWizardsData(JSON.parse(request.responseText));
-        window.orderSimilarWizards();
-        window.renderSimilarWizards();
+        showSimilarWizards();
       })
       request.addEventListener('timeout', function() {
         console.log('Response expectation is running out of the time limit');

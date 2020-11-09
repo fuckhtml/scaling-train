@@ -27,8 +27,9 @@
         default:
           break;
       }
-      window.orderSimilarWizards();
-      window.renderSimilarWizards();
+
+      window.utils.debounce(window.showSimilarWizards); // Doesn't work... Why?
+      window.showSimilarWizards();
     }
 
     const setupPlayerElementOnClick = () => setPlayerAppearance();
@@ -45,44 +46,20 @@
     let currentEyesColorIndex = 0;
 
     setupPlayerElement.addEventListener('click', setupPlayerElementOnClick, false);
+    // setupPlayerElement.addEventListener('click', window.utils.debounce(window.showSimilarWizards), false);
 
-    // const debounce = (func) => {
-    //   let timeout = null;
-    //   return () => {
-    //     timeout && clearTimeout(timeout);
-    //     timeout = setTimeout(()=> {
-    //       func(event);
-    //     }, 1000)
-    //   };
-    // }
+    // This debounce is working...
 
-    // const print = (arg) => {
-    //   console.log(arg)
-    // }
+    const print = (event) => {
+      console.log(event.target)
+    }
 
-    // document.addEventListener('click', debounce( (event) => {
-    //   print(event);
-    // }), false)
-
+    document.addEventListener('click', window.utils.debounce( (event) => {
+      print(event);
+    }), false)
 
   }
 
   document.addEventListener('DOMContentLoaded', initSetupPlayerAppearance, false);
 
 })()
-
-
-// const sayHi = (nameList) => {
-//   nameList.forEach(name => console.log(`Hi ${name}!`));
-// }
-
-// sayHi.call(['alex','terry','jide']);
-
-
-// var Party = function() {
-//   this.names = ['alex','terry','jide'];
-// }
-
-// const home = new Party();
-
-// sayHi.call(home);
